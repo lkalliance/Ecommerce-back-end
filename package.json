@@ -1,0 +1,26 @@
+{
+  "name": "e-commerce-back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lkalliance/module-13-challenge.git"
+  },
+  "author": "Lee Klusky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lkalliance/module-13-challenge/issues"
+  },
+  "homepage": "https://github.com/lkalliance/module-13-challenge#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mysql2": "^3.2.0",
+    "sequelize": "^6.29.3"
+  }
+}
