@@ -16,10 +16,10 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     // find and return a single category, with associated products
-    const catData = await Category.findByPk(req.params.id, { include: [{ model: Product }]});
+    const catData = await Category.findByPk(req.params.id, { include: [{ model: Product }] });
     if (!catData) {
       // does a product exist with that id
-      res.status(404).json({message: "No category found with that id!"});
+      res.status(404).json({ message: "No category found with that id!" });
     }
     res.status(200).json(catData);
   } catch (err) {
@@ -41,16 +41,14 @@ router.put('/:id', async (req, res) => {
   try {
     // edit a single category and return confirmation
     const catData = await Category.update(req.body, {
-      where: {
-        id: req.params.id,
-      }
+      where: { id: req.params.id }
     });
     if (!catData) {
       // does a category exist with that id
-      res.status(404).json({message: "No category found with that id!"});
+      res.status(404).json({ message: "No category found with that id!" });
       return;
     }
-    res.status(200).json({ message: (catData[0]==1) ? "Category edited" : "Category not edited" });
+    res.status(200).json({ message: ( catData[0]==1 ) ? "Category edited" : "Category not edited" });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -61,16 +59,14 @@ router.delete('/:id', async (req, res) => {
   try {
     // delete a single category and return confirmation
     const catData = await Category.destroy({
-      where: {
-        id: req.params.id,
-      }
+      where: { id: req.params.id }
     });
     if (!catData) {
       // does a category exist with that id
-      res.status(404).json({message: "No category found with that id!"});
+      res.status(404).json({ message: "No category found with that id!" });
       return;
     }
-    res.status(200).json({ message: (catData[0]==1) ? "Category deleted" : "Category not deleted" });
+    res.status(200).json({ message: ( catData[0]==1 ) ? "Category deleted" : "Category not deleted" });
   } catch (err) {
     res.status(400).json(err);
   }
