@@ -29,6 +29,12 @@ The E-Commerce Back End is a Node.js application that interfaces with a mysql da
 
 Once the E-Commerce Back End is installed, a user can create the empty database by running the db/schema.sql file at his mysql prompt. Optionally, if they would like to play with dummy data, they can run "node seeds/index" on their CLI from the installation directory. To turn on the server, run "npm start" from the CLI.
 
+<img src="./assets/ecom-screenshot-1.png" width="300" />
+<img src="./assets/ecom-screenshot-2.png" width="300" />
+<img src="./assets/ecom-screenshot-3.png" width="300" />
+<img src="./assets/ecom-screenshot-4.png" width="300" />
+
+
 Utilizing [Insomnia](https://insomnia.rest) or some similar tool to interface with the server, the user can go to the folling paths to accomplish these actions. The application defaults to port 3001, but can be routed through any port of the user's wishes:
 
 * Categories: http://[host]:[port]/api/categories/[id]
