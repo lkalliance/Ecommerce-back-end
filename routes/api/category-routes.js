@@ -44,12 +44,12 @@ router.put('/:id', async (req, res) => {
     const catData = await Category.update(req.body, {
       where: { id: req.params.id }
     });
-    if (!catData) {
+    if (!catData[0]) {
       // does a category exist with that id
       res.status(404).json({ message: "No category found with that id!" });
       return;
     }
-    res.status(200).json({ message: ( catData[0]==1 ) ? "Category edited" : "Category not edited" });
+    res.status(200).json({ message: "Category edited" });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -67,7 +67,7 @@ router.delete('/:id', async (req, res) => {
       res.status(404).json({ message: "No category found with that id!" });
       return;
     }
-    res.status(200).json({ message: ( catData[0]==1 ) ? "Category deleted" : "Category not deleted" });
+    res.status(200).json({ message: "Category deleted" });
   } catch (err) {
     res.status(400).json(err);
   }

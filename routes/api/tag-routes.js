@@ -44,12 +44,12 @@ router.put('/:id', async (req, res) => {
     const tagData = await Tag.update(req.body, {
       where: { id: req.params.id }
     });
-    if (!tagData) {
+    if (!tagData[0]) {
       // does a tag exist with that id
       res.status(404).json({ message: "No tag found with that id!" });
       return;
     }
-    res.status(200).json({ message: (tagData[0]==1) ? "Tag edited" : "Tag not edited" });
+    res.status(200).json({ message: "Tag edited" });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -66,7 +66,7 @@ router.delete('/:id', async (req, res) => {
       res.status(404).json({ message: "No tag found with that id!" });
       return;
     }
-    res.status(200).json({ message: (tagData==1) ? "Tag deleted" : "Tag not deleted" });
+    res.status(200).json({ message:"Tag deleted" });
   } catch (err) {
     res.status(400).json(err);
   }

@@ -51,28 +51,30 @@ router.put('/:id', async (req, res) => {
     const prodData = await Product.update(req.body, {
       where: { id: req.params.id }
     });
-    if (!prodData) {
+    if (!prodData[0]) {
       // does a product exist with that id
       res.status(404).json({ message: "No product found with that id!" });
       return;
     }
-    // get the existing tags and convert to an array
-    const productTags = await ProductTag.findAll({ where: { product_id: req.params.id }});
-    const productTagIds = productTags.map( ({ tag_id }) => tag_id );
-    // compare updated tag list to existing tags and identify new ones to add
-    const newProductTags = req.body.tagIds
-      .filter((tag_id) => !productTagIds.includes(tag_id))
-      .map((tag_id) => {
-        return { product_id: req.params.id, tag_id }
-      });
-    // compare updated tag list to existing tags and identify ones to delete
-    const productTagsToRemove = productTags
-      .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
-      .map(({ id }) => id);
-    // add the new tags, remove the deleted ones
-    const created = await ProductTag.bulkCreate(newProductTags);
-    const removed = await ProductTag.destroy({ where: { id: productTagsToRemove } });
-    res.status(200).json({ message: `Product updated, with ${created.length} tags added, ${removed} removed` });
+    if (req.body.tagIds) {
+      // get the existing tags and convert to an array
+      const productTags = await ProductTag.findAll({ where: { product_id: req.params.id }});
+      const productTagIds = productTags.map( ({ tag_id }) => tag_id );
+      // compare updated tag list to existing tags and identify new ones to add
+      const newProductTags = req.body.tagIds
+        .filter((tag_id) => !productTagIds.includes(tag_id))
+        .map((tag_id) => {
+          return { product_id: req.params.id, tag_id }
+        });
+      // compare updated tag list to existing tags and identify ones to delete
+      const productTagsToRemove = productTags
+        .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
+        .map(({ id }) => id);
+      // add the new tags, remove the deleted ones
+      const created = await ProductTag.bulkCreate(newProductTags);
+      const removed = await ProductTag.destroy({ where: { id: productTagsToRemove } });
+    }
+    res.status(200).json({ message: "Product updated" });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -89,7 +91,7 @@ router.delete('/:id', async (req, res) => {
       res.status(404).json({ message: "No product found with that id!" });
       return;
     }
-    res.status(200).json({ message: (prodData==1) ? "Product deleted" : "Product not deleted" });
+    res.status(200).json({ message: "Product deleted" });
   } catch (err) {
     res.status(400).json(err);
   }
