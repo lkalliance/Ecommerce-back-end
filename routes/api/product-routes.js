@@ -53,21 +53,31 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     // edit a single product and return confirmation
-    const prodData = await Product.update(req.body, {
-      where: { id: req.params.id }
-    });
-    if (!prodData[0]) {
+
+    // spllit the req.body into the product info and tag info
+    const { tagIds, ...product } = req.body;
+
+    // get info on the product
+    const thisProduct = await Product.findByPk( req.params.id );
+    if (!thisProduct) {
       // does a product exist with that id
       res.status(404).json({ message: "No product found with that id!" });
       return;
     }
-    if (req.body.tagIds.length) {
+
+    // update the product
+    const prodData = await Product.update(product, {
+      where: { id: req.params.id }
+    });
+
+    // update the tags
+    if (tagIds) {
       // get the existing tags and convert to an array
       const productTags = await ProductTag.findAll({ where: { product_id: req.params.id }});
       const productTagIds = productTags.map( ({ tag_id }) => tag_id );
 
       // compare updated tag list to existing tags and identify new ones to add
-      const newProductTags = req.body.tagIds
+      const newProductTags = tagIds
         .filter((tag_id) => !productTagIds.includes(tag_id))
         .map((tag_id) => {
           return { product_id: req.params.id, tag_id }
@@ -75,15 +85,17 @@ router.put('/:id', async (req, res) => {
 
       // compare updated tag list to existing tags and identify ones to delete
       const productTagsToRemove = productTags
-        .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
+        .filter(({ tag_id }) => !tagIds.includes(tag_id))
         .map(({ id }) => id);
 
       // add the new tags, remove the deleted ones
       const created = await ProductTag.bulkCreate(newProductTags);
       const removed = await ProductTag.destroy({ where: { id: productTagsToRemove } });
     }
+
     res.status(200).json({ message: "Product updated" });
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 });
