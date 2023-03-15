@@ -8,7 +8,7 @@ The E-Commerce Back End is a relational database that allows a user to interact 
 
 I needed a quicker way to interact with the back-end data. Something not as polished and limiting as a web front end, but more convenient than using the CLI. So I created this!
 
-A walkthrough video demonstrating the capabilities of the software is available [here](https://drive.google.com/file/d/1KFZy1AUfL2XW0anQRpikWTVsJNBcrkK4/view?usp=sharing).
+A walkthrough video demonstrating the capabilities of the software is available [here](https://drive.google.com/file/d/12H1SUPp5Dt2KasaDJFmFtTwXFm-DGPnV/view?usp=sharing).
 
 
 ## Table of Contents
