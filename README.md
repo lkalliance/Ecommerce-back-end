@@ -1,6 +1,6 @@
 # E-Commerce Back End [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-<img src="./Assets/ecom-screenshot-collection.gif" style="float: right; margin-left: 10px;" />
+<img src="./Assets/ecom-screenshot-collection.gif" style="float: right; margin-left: 10px; margin-bottom: 10px;" />
 
 ## Description
 
@@ -8,7 +8,7 @@ The E-Commerce Back End is a relational database that allows a user to interact 
 
 I needed a quicker way to interact with the back-end data. Something not as polished and limiting as a web front end, but more convenient than using the CLI. So I created this!
 
-A walkthrough video demonstrating the capabilities of the software is available [here](https://drive.google.com/file/d/12H1SUPp5Dt2KasaDJFmFtTwXFm-DGPnV/view?usp=sharing).
+A walkthrough video demonstrating the capabilities of the software is available [here](https://drive.google.com/file/d/1mF--Zqsoz6AOhqMmltF5WVii56m39ugk/view?usp=sharing).
 
 
 ## Table of Contents
