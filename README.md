@@ -1,6 +1,6 @@
 # E-Commerce Back End [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-<img src="./assets/ecom-screenshot-collection.gif" style="float: right; margin-left: 10px;" />
+<img src="./Assets/ecom-screenshot-collection.gif" style="float: right; margin-left: 10px;" />
 
 ## Description
 
@@ -29,11 +29,8 @@ The E-Commerce Back End is a Node.js application that interfaces with a mysql da
 
 Once the E-Commerce Back End is installed, a user can create the empty database by running the db/schema.sql file at his mysql prompt. Optionally, if they would like to play with dummy data, they can run "node seeds/index" on their CLI from the installation directory. To turn on the server, run "npm start" from the CLI.
 
-<img src="./assets/ecom-screenshot-1.png" width="300" />
-<img src="./assets/ecom-screenshot-2.png" width="300" />
-<img src="./assets/ecom-screenshot-3.png" width="300" />
-<img src="./assets/ecom-screenshot-4.png" width="300" />
-
+<img src="./Assets/ecom-screenshot-1.png" width="300" />
+<img src="./Assets/ecom-screenshot-2.png" width="300" />
 
 Utilizing [Insomnia](https://insomnia.rest) or some similar tool to interface with the server, the user can go to the folling paths to accomplish these actions. The application defaults to port 3001, but can be routed through any port of the user's wishes:
 
@@ -42,6 +39,9 @@ Utilizing [Insomnia](https://insomnia.rest) or some similar tool to interface wi
 * Tags: http://[host]:[port]/api/tags/[id]
 
 Use a GET request at each path to get information on all categories, products or tags by leaving off the optional id, or get information on just one category, product or tag by using its id number.
+
+<img src="./Assets/ecom-screenshot-3.png" width="300" />
+<img src="./Assets/ecom-screenshot-4.png" width="300" />
 
 Use a POST request at each path (with non id) to post a new category, product or tag. The body of your post should include:
 
